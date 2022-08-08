@@ -38,7 +38,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/user-update/{id}")
+    @GetMapping("/{id}/user-update")
     public String ShowUpdateUserForm(@PathVariable("id") long id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user", user);
@@ -51,7 +51,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/user-delete/{id}")
+    @GetMapping("/{id}/user-delete")
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteById(id);
         return "redirect:/admin";

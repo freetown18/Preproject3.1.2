@@ -31,10 +31,10 @@
                 <td th:text="${user.getEmail()}"/>
                 <td th:text="${user.getRoles()}"/>
                 <td>
-                    <a th:href="@{/admin/user-update/{id}(id=${user.getId()})}">Update</a>
+                    <a th:href="@{/admin/{id}/user-update(id=${user.getId()})}">Update</a>
                 </td>
                 <td>
-                    <a th:href="@{/admin/user-delete/{id}(id=${user.getId()})}">Delete</a>
+                    <a th:href="@{/admin/{id}/user-delete(id=${user.getId()})}">Delete</a>
                 </td>
             </tr>
             </tbody>
