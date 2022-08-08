@@ -15,11 +15,10 @@ import java.util.Set;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String username;
     private String surname;
     private int age;
-
     private String password;
     private String email;
 

@@ -31,17 +31,17 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public User findById(long id) {
+    public User findById(int id) {
         return userRepository.getById(id);
     }
 
     @Transactional
     public User saveUser(User user) {
-            user.addRole(new Role(2L, "ROLE_USER"));
+            user.addRole(new Role(2, "ROLE_USER"));
         return userRepository.save(user);
     }
 
-    public void deleteById(long id) {
+    public void deleteById(int id) {
         userRepository.deleteById(id);
     }
 
