@@ -1,4 +1,4 @@
-package ru.kata.spring.boot_security.demo.controller;
+package ru.kata.spring.boot_security.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.service.UserService;
+import ru.kata.spring.boot_security.demo.models.User;
+import ru.kata.spring.boot_security.demo.services.UserService;
 
 
 @Controller
@@ -25,12 +25,12 @@ public class AdminController {
     @GetMapping("")
     public String findAll(Model model) {
         model.addAttribute("users", userService.findAll());
-        return "admin";
+        return "admin/admin_test";
     }
 
     @GetMapping("/user-create")
     public String createUserForm(User user) {
-        return "user-create";
+        return "admin/user-create_test";
     }
 
     @PostMapping("/user-create")
@@ -43,7 +43,7 @@ public class AdminController {
     public String updateUserForm(@PathVariable("id") long id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user", user);
-        return "user-update";
+        return "admin/user-update_test";
     }
 
     @PostMapping("/user-update")

@@ -8,9 +8,9 @@
 <div th:switch="${users}">
     <h2 th:case="null">No users found!</h2>
     <div th:case="*">
-        <h2>Admin page</h2>
+        <h2>Admin test page</h2>
         <table>User table
-            <thread>
+            <thead>
                 <tr>
                     <th>Id</th>
                     <th>Username</th>
@@ -21,7 +21,7 @@
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-            </thread>
+            </thead>
             <tbody>
             <tr th:each="user : ${users}">
                 <td th:text="${user.getId()}"/>
