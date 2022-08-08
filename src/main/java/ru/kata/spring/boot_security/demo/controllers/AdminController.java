@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.services.UserService;
 
-
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -23,27 +22,27 @@ public class AdminController {
     }
 
     @GetMapping("")
-    public String findAll(Model model) {
+    public String showAllUsers(Model model) {
         model.addAttribute("users", userService.findAll());
-        return "admin/admin_test";
+        return "admin/admin";
     }
 
     @GetMapping("/user-create")
-    public String createUserForm(User user) {
-        return "admin/user-create_test";
+    public String showNewUserForm(User user) {
+        return "admin/user-create";
     }
 
     @PostMapping("/user-create")
-    public String createUser(User user) {
+    public String addNewUser(User user) {
         userService.saveUser(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/user-update/{id}")
-    public String updateUserForm(@PathVariable("id") long id, Model model) {
+    public String ShowUpdateUserForm(@PathVariable("id") long id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user", user);
-        return "admin/user-update_test";
+        return "admin/user-update";
     }
 
     @PostMapping("/user-update")
