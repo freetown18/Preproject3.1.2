@@ -48,6 +48,8 @@ public class AdminController {
     @GetMapping("/{id}/user-update")
     public String ShowUpdateUserForm(@PathVariable("id") int id, Model model) {
         User user = userService.findById(id);
+        List<Role> listRoles = userService.getAllRoles();
+        model.addAttribute("listRoles", listRoles);
         model.addAttribute("user", user);
         return "admin/user-update";
     }
@@ -55,6 +57,7 @@ public class AdminController {
     @PostMapping("/user-update")
     public String updateUser(User user) {
         userService.saveUser(user);
+        //userService.updateUser(user);
         return "redirect:/admin";
     }
 

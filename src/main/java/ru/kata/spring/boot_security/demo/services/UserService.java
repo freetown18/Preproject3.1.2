@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.dao.RoleDao;
+import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.repositories.UserRepository;
@@ -23,11 +24,13 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final RoleDao roleDao;
+    private final UserDao userDao;
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleDao roleDao) {
+    public UserService(UserRepository userRepository, RoleDao roleDao, UserDao userDao) {
         this.userRepository = userRepository;
         this.roleDao = roleDao;
+        this.userDao = userDao;
     }
 
     public List<User> findAll() {
@@ -69,5 +72,9 @@ public class UserService implements UserDetailsService {
 
     public List<Role> getAllRoles() {
         return roleDao.getAll();
+    }
+
+    public void updateUser(User user) {
+        userDao.update(user);
     }
 }
