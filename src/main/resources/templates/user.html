@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" >
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <title>User</title>
 </head>
@@ -7,21 +7,19 @@
 <h1>User, welcome!</h1>
 <br>
 <table>User info
-    <thread>
+    <thead>
         <tr>
             <th>Id</th>
             <th>Username</th>
-            <th>Surname</th>
             <th>Age</th>
             <th>e-mailEMAIL</th>
             <th>role</th>
         </tr>
-    </thread>
+    </thead>
     <tbody>
     <tr>
         <td th:text="${user.getId()}"/>
         <td th:text="${user.getUsername()}"/>
-        <td th:text="${user.getSurname()}"/>
         <td th:text="${user.getAge()}"/>
         <td th:text="${user.getEmail()}"/>
         <td th:text="${user.getRoles()}"/>
