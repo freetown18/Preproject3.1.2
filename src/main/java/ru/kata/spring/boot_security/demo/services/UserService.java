@@ -33,8 +33,8 @@ public class UserService implements UserDetailsService {
         this.userDao = userDao;
     }
 
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<User> getAllUsers(){
+        return userDao.getAll();
     }
 
     public User findById(int id) {
