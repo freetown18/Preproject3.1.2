@@ -28,7 +28,9 @@ public class AdminController {
     }
 
     @GetMapping("/user-create")
-    public String showNewUserForm(User user) {
+    public String showNewUserForm(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
         return "admin/user-create";
     }
 

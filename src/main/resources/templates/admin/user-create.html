@@ -1,30 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create user</title>
 </head>
 <body>
-USER CREATE TEST
+<h1>Add new user</h1>
 <form action="#" th:action="@{/admin/user-create}" th:object="${user}" method="post">
     <label for="username">Username: </label>
-    <input type="text" th:field="*{username}" id="username" placeholder="username">
+    <input type="text" th:field="*{username}" id="username">
     <br>
-<!--    <br>-->
-<!--    <label for="surname">Surname: </label>-->
-<!--    <input type="text" th:field="*{surname}" id="surname" placeholder="surname">-->
-<!--    <br>-->
     <br>
     <label for="age">Age: </label>
-    <input type="text" name="age" id="age" placeholder="age">
+    <input type="text" th:field="*{age}" id="age">
     <br>
     <br>
     <label for="password">password: </label>
-    <input type="text" name="password" id="password" placeholder="password">
+    <input type="text" th:field="*{password}" id="password">
     <br>
     <br>
     <label for="email">e-mail: </label>
-    <input type="text" th:field="*{email}" id="email" placeholder="email">
+    <input type="text" th:field="*{email}" id="email">
     <br>
     <br>
     <input type="submit" value="Create"/>
