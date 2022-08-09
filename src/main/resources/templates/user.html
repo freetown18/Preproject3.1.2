@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
-    <title>User</title>
+    <title>[[${#request.remoteUser}]]</title>
 </head>
 <body>
-<h1>User, welcome!</h1>
+<h1>Welcome, [[${#request.remoteUser}]]!</h1>
 <br>
-<table>User info
+<table>Your info:
     <thead>
         <tr>
             <th>Id</th>
             <th>Username</th>
             <th>Age</th>
-            <th>e-mailEMAIL</th>
-            <th>role</th>
+            <th>Email</th>
+            <th>Role</th>
         </tr>
     </thead>
     <tbody>
@@ -27,9 +27,7 @@
     </tbody>
 </table>
 <br>
-<form  action="#"  th:action="@{/logout}" method="get">
-    <input type="submit" value="exit"/>
-</form>
+<div th:insert="logout-fragment :: copy"></div>
 </body>
 </html>
 

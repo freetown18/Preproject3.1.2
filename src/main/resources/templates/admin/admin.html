@@ -5,28 +5,37 @@
     <title>All Users</title>
 </head>
 <body>
+<h1>Admin page</h1>
+<form action="#" th:action="@{/user}">
+    <input type="submit" value="My information"/>
+</form>
+<br>
+<form action="#" th:action="@{/admin/user-create}" method="get">
+    <input type="submit" value="Add new user"/>
+</form>
+<br>
+<div th:insert="logout-fragment :: copy"></div>
+<br>
+<br>
 <div th:switch="${users}">
-    <h2 th:case="null">No users found!</h2>
+    <h2 th:case="null">Currently there are no users</h2>
     <div th:case="*">
-        <h2>Admin test page</h2>
-        <table>User table
+        <table>All users
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Username</th>
-<!--                    <th>Surname</th>-->
                     <th>Age</th>
-                    <th>e-mail</th>
+                    <th>Email</th>
                     <th>Role</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
             <tr th:each="user : ${users}">
                 <td th:text="${user.getId()}"/>
                 <td th:text="${user.getUsername()}"/>
-<!--                <td th:text="${user.getSurname()}"/>-->
                 <td th:text="${user.getAge()}"/>
                 <td th:text="${user.getEmail()}"/>
                 <td th:text="${user.getRoles()}"/>
@@ -40,18 +49,6 @@
             </tbody>
         </table>
     </div>
-    <br>
-    <form action="#" th:action="@{/admin/user-create}" method="get">
-        <input type="submit" value="Create"/>
-    </form>
-    <br>
-    <form action="#" th:action="@{/user}">
-        <input type="submit" value="info user"/>
-    </form>
-    <br>
-    <form action="#" th:action="@{/logout}" method="get">
-        <input type="submit" value="exit"/>
-    </form>
 </div>
 </body>
 </html>

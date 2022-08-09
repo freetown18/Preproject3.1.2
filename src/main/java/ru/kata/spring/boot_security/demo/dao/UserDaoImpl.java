@@ -40,8 +40,6 @@ public class UserDaoImpl implements UserDao {
                 .getSingleResult();
     }
 
-
-
     @Override
     public void update(User user) {
         em.merge(user);

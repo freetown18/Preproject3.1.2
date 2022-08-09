@@ -5,25 +5,21 @@
     <title>Update User</title>
 </head>
 <body>
-<h1>USER UPDATE TEST</h1>
+<h1>Update user info</h1>
 <form action="#" th:action="@{/admin/user-update}" th:object="${user}" method="post">
-    <label for="id">User id: </label>
-    <input readonly type="number" th:field="*{id}" id="id">
-    <br>
-    <br>
-    <label for="username">Username: </label>
+    <label for="username">Name: </label>
     <input type="text" th:field="*{username}" id="username"/>
     <br>
     <br>
     <label for="age">Age: </label>
-    <input type="text" th:field="*{age}" id="age">
+    <input type="number" th:field="*{age}" id="age">
     <br>
     <br>
-    <label for="password">password: </label>
+    <label for="password">Password: </label>
     <input type="text" th:field="*{password}" id="password">
     <br>
     <br>
-    <label for="email">e-mail: </label>
+    <label for="email">Email: </label>
     <input type="text" th:field="*{email}" id="email">
     <br>
     <br>
@@ -41,11 +37,9 @@
 </form>
 <br>
 <form action="#" th:action="@{/admin}" method="get">
-    <input type="submit" value="Back"/>
+    <input type="submit" value="Cancel"/>
 </form>
 <br>
-<form action="#" th:action="@{/logout}" method="get">
-    <input type="submit" value="exit"/>
-</form>
+<div th:insert="logout-fragment :: copy"></div>
 </body>
 </html>

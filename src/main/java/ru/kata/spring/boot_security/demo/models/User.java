@@ -1,7 +1,5 @@
 package ru.kata.spring.boot_security.demo.models;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,7 +15,6 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String username;
-    //private String surname;
     private int age;
     private String password;
     private String email;
@@ -79,12 +76,12 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public void addRole(Role role) {
-        if (this.roles == null) {
-            this.roles = new HashSet<>();
-        }
-        this.roles.add(role);
-    }
+//    public void addRole(Role role) {
+//        if (this.roles == null) {
+//            this.roles = new HashSet<>();
+//        }
+//        this.roles.add(role);
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
