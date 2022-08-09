@@ -12,8 +12,6 @@ import ru.kata.spring.boot_security.demo.dao.RoleDao;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
-import ru.kata.spring.boot_security.demo.repositories.UserRepository;
-
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
@@ -22,13 +20,11 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements UserDetailsService {
 
-    private final UserRepository userRepository;
     private final RoleDao roleDao;
     private final UserDao userDao;
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleDao roleDao, UserDao userDao) {
-        this.userRepository = userRepository;
+    public UserService(RoleDao roleDao, UserDao userDao) {
         this.roleDao = roleDao;
         this.userDao = userDao;
     }
@@ -38,21 +34,30 @@ public class UserService implements UserDetailsService {
     }
 
     public User findById(int id) {
-        return userRepository.getById(id);
+        return userDao.getById(id);
     }
 
     @Transactional
-    public User saveUser(User user) {
-            //user.addRole(new Role(2, "ROLE_USER"));
-        return userRepository.save(user);
+    public void saveUser(User user) {
+        userDao.saveNew(user);
     }
 
+    @Transactional
     public void deleteById(int id) {
-        userRepository.deleteById(id);
+        userDao.delete(id);
     }
 
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userDao.getByName(username);
+    }
+
+    @Transactional
+    public void updateUser(User user) {
+        userDao.update(user);
+    }
+
+    public List<Role> getAllRoles() {
+        return roleDao.getAll();
     }
 
     @Override
@@ -68,13 +73,5 @@ public class UserService implements UserDetailsService {
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
-    }
-
-    public List<Role> getAllRoles() {
-        return roleDao.getAll();
-    }
-
-    public void updateUser(User user) {
-        userDao.update(user);
     }
 }

@@ -19,22 +19,25 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveNew(User user) {
-
+        em.persist(user);
     }
 
     @Override
     public User getById(int id) {
-        return null;
+        return em.find(User.class, id);
     }
 
     @Override
     public void delete(int id) {
-
+        User user = getById(id);
+        em.remove(user);
     }
 
     @Override
     public User getByName(String name) {
-        return null;
+        return em.createQuery("select u from User u where u.username = :name", User.class)
+                .setParameter("name", name)
+                .getSingleResult();
     }
 
 
