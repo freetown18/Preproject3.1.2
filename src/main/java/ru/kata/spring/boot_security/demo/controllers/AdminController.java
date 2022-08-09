@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.services.UserService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,7 +33,9 @@ public class AdminController {
     @GetMapping("/user-create")
     public String showNewUserForm(Model model) {
         User user = new User();
+        List<Role> roleList = userService.getAllRoles();
         model.addAttribute("user", user);
+        model.addAttribute("list", roleList);
         return "admin/user-create";
     }
 

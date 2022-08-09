@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import ru.kata.spring.boot_security.demo.dao.RoleDao;
 import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.repositories.UserRepository;
@@ -21,10 +22,12 @@ import java.util.stream.Collectors;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final RoleDao roleDao;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, RoleDao roleDao) {
         this.userRepository = userRepository;
+        this.roleDao = roleDao;
     }
 
     public List<User> findAll() {
@@ -37,7 +40,7 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public User saveUser(User user) {
-            user.addRole(new Role(2, "ROLE_USER"));
+            //user.addRole(new Role(2, "ROLE_USER"));
         return userRepository.save(user);
     }
 
@@ -62,5 +65,9 @@ public class UserService implements UserDetailsService {
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+    }
+
+    public List<Role> getAllRoles() {
+        return roleDao.getAll();
     }
 }
