@@ -76,13 +76,6 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-//    public void addRole(Role role) {
-//        if (this.roles == null) {
-//            this.roles = new HashSet<>();
-//        }
-//        this.roles.add(role);
-//    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
